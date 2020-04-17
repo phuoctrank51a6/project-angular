@@ -47,9 +47,9 @@
                             <td><img width="100px" src="{{product.img}}" alt=""></td>
                             <td>{{(product.status == true)? "Còn hàng" : "Hết hàng"}}</td>
                             <td>
-                                <a style="margin: 7px;" class="btn btn-info" [routerLink]="['../../product-detail', product.id]"><i class="fas fa-eye"></i></a>
-                                <a style="margin: 7px;" class="btn btn-warning" [routerLink]="['/admin/edit-product', product.id]"><i class="fas fa-edit"></i></a>
-                                <button style="margin: 7px;" class="btn btn-danger" (click)="delProduct(product.id)"><i class="fas fa-trash-alt"></i></button>
+                                <a class="btn btn-info" [routerLink]="['../../product-detail', product.id]"><i class="fas fa-eye"></i></a> &nbsp;
+                                <a class="btn btn-warning" [routerLink]="['/admin/edit-product', product.id]"><i class="fas fa-edit"></i></a> &nbsp;
+                                <button class="btn btn-danger" (click)="delProduct(product.id)"><i class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
                     </tbody>
