@@ -1,0 +1,62 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+</div>
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Desc</th>
+                            <th>image</th>
+                            <th>status</th>
+                            <th>
+                                <a class="btn btn-primary" href="/admin/add-product">Thêm</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Desc</th>
+                            <th>image</th>
+                            <th>status</th>
+                            <th>
+                                <a class="btn btn-primary" href="/admin/add-product">Thêm</a>
+                            </th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr *ngFor="let product of products | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                            <td> {{ product.id }} </td>
+                            <td> {{ product.name }} </td>
+                            <td> {{ product.price }} </td>
+                            <td> {{ product.desc }} </td>
+                            <td><img width="100px" src="{{product.img}}" alt=""></td>
+                            <td>{{(product.status == true)? "Còn hàng" : "Hết hàng"}}</td>
+                            <td>
+                                <a style="margin: 7px;" class="btn btn-info" [routerLink]="['../../product-detail', product.id]"><i class="fas fa-eye"></i></a>
+                                <a style="margin: 7px;" class="btn btn-warning" [routerLink]="['/admin/edit-product', product.id]"><i class="fas fa-edit"></i></a>
+                                <button style="margin: 7px;" class="btn btn-danger" (click)="delProduct(product.id)"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="products.length"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+
+</div>
