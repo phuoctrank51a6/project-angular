@@ -6,7 +6,7 @@
         <div *ngFor="let product of products" class="col-lg-3 col-md-4 col-sm-6 px-2 mb-4">
             <div class="card product-card">
                 <button class="btn-wishlist btn-sm" type="button" data-toggle="tooltip" data-placement="left" title="Add to wishlist"><i class="czi-heart"></i></button>
-                <a class="card-img-top d-block overflow-hidden" [routerLink]="['/product-detail', product.id]"><img [src]="product.img" alt="Product"></a>
+                <a class="card-img-top d-block overflow-hidden" [routerLink]="['/product-detail', product.id]"><img width="100%" [src]="product.img" alt="Product"></a>
                 <div class="card-body py-2"><a class="product-meta d-block font-size-xs pb-1" href="#"> {{product.desc}} </a>
                     <h3 class="product-title font-size-sm"><a [routerLink]="['/product-detail', product.id]"> {{product.name}} </a></h3>
                     <div class="d-flex justify-content-between">
@@ -43,43 +43,6 @@
     </div>
     <div class="text-center pt-3"><a class="btn btn-outline-accent" href="shop-grid-ls.html">More products<i class="czi-arrow-right ml-1"></i></a></div>
 </section>
-
-<div class="row">
-    <!-- <app-item-product ngClass="col-lg-4 col-md-6 mb-4"></app-item-product>
-    <app-item-product ngClass="col-lg-4 col-md-6 mb-4"></app-item-product>
-    <app-item-product ngClass="col-lg-4 col-md-6 mb-4"></app-item-product> -->
-    <div *ngFor="let product of products" class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-            <!-- cách 1 -->
-            <!-- <a href="#"><img class="card-img-top" src="{{ product.img }}" alt=""></a> -->
-            <!-- Cách 2 -->
-            <a href="#"><img class="card-img-top" [src]="product.img" alt="" /></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="#">{{ product.name }}</a>
-                </h4>
-                <h5>{{ product.price }}</h5>
-                <p class="card-text">{{ product.desc }}</p>
-                <p class="cart-text">{{ product.status ? "Còn hàng" : "Hết hàng" }}</p>
-                <!-- cấu trúc event
-                - (event-name)="method($event) -->
-                <button class="btn btn-warning" (click)="detailProduct(product)">Chi tiết</button>
-                <button class="btn btn-danger" (click)="removeIttem(product.id)">Xóa</button>
-                <!-- cách 1 -->
-                <!-- <input type="text " (keyup)="changeTitle($event) "> -->
-                <!-- cách 2 -->
-                <!-- <form action=" ">
-                    <input type="text " [(ngModel)]="product.name" name="name " />
-                    <input type="text " [(ngModel)]="product.desc" name="desc " />
-                </form> -->
-                <!-- <input type="text " [(ngModel)]="product.name "> -->
-            </div>
-            <div class="card-footer ">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- <div *ngIf="selected">
     {{selected.name}} -->
 <!-- Cách 1: Gọi trực tiếp từ file item ts -->
