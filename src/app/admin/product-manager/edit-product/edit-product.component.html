@@ -1,0 +1,65 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Danh mục</h1>
+</div>
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cập nhật danh mục</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form *ngIf="product" [formGroup]=form>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" formControlName="name" [(ngModel)]="product.name" id="exampleFormControlInput1">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="name.errors.required">Hãy nhập tên sản phẩm</p>
+                            <p *ngIf="name.errors.minlength">Số lượng ký tự lớn hơn 4 ký tự</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Price</label>
+                        <input type="text" class="form-control" name="price" id="price" formControlName="price" [(ngModel)]="product.price" id="exampleFormControlInput1">
+                        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="price.errors.required">Hãy nhập giá sản phẩm</p>
+                            <p *ngIf="price.errors.pattern">phải là số</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <img *ngIf="product.img" src="{{product.img}}" alt="Image product">
+                        <br>
+                        <label for="exampleFormControlInput1">image</label>
+                        <input type="text" class="form-control" id="img" formControlName="img" name="img" [(ngModel)]="product.img" id="exampleFormControlInput1">
+                        <div *ngIf="img.invalid && (img.dirty || img.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="img.errors.required">Hãy nhập liên kết</p>
+                            <p *ngIf="img.errors.pattern">Chưa đúng chuẩn đường dẫn</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">DESC</label>
+                        <textarea name="desc" [(ngModel)]="product.desc" id="desc" formControlName="desc" class="form-control" id="exampleFormControlTextarea1" rows="3">{{product.desc}}</textarea>
+                        <div *ngIf="desc.invalid && (desc.dirty || desc.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="desc.errors.required">Hãy nhập tênthông tin sản phẩm</p>
+                            <p *ngIf="desc.errors.minlength">Số lượng ký tự lớn hơn 10 ký tự</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Trạng thái</label>
+                        <select class="form-control" name="status" id="status" formControlName="status" [(ngModel)]="product.status" id="exampleFormControlSelect1">
+                <option value="true" selected>Còn hàng</option>
+                <option value="false">Hết hàng</option>
+            </select>
+                        <div *ngIf="status.invalid && (status.dirty || status.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="status.errors.required">Hãy nhập liên kết</p>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!form.valid" class="btn btn-warning" (click)="updateProduct()">Sửa sản phẩm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

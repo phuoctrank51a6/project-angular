@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from './Product';
-import { data } from './MockProduct';
+import { Product } from '../models/Product';
 import { HttpClient } from '@angular/common/http';
 // Chuyên sự dụng để xử lý bất đồng bộ
 import { Observable } from 'rxjs';

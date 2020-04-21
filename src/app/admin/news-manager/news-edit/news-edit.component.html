@@ -1,0 +1,47 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Danh mục</h1>
+</div>
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cập nhật danh mục</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form *ngIf="new" [formGroup]='form'>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Tiêu đề</label>
+                        <input type="text" class="form-control" name="name" formControlName="title" [(ngModel)]="new.title" id="exampleFormControlInput1">
+                        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="title.errors.required">Hãy nhập tiêu đề</p>
+                            <p *ngIf="title.errors.minlength">Số lượng lý tự lớn hơn 4 ký tự</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <img *ngIf="new.img" src="{{ new.img }}" alt="Image product">
+                        <br>
+                        <label for="exampleFormControlInput1">Ảnh</label>
+                        <input type="text" class="form-control" formControlName="img" name="img" [(ngModel)]="new.img" id="exampleFormControlInput1">
+                        <div *ngIf="img.invalid && (img.dirty || img.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="img.errors.required">Hãy nhập liên kết</p>
+                            <p *ngIf="img.errors.pattern">Chưa đúng chuẩn đường dẫn</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Nội dung</label>
+                        <textarea name="desc" [(ngModel)]="new.content" formControlName="content" class="form-control" id="exampleFormControlTextarea1" rows="3">{{new.content}}</textarea>
+                        <div *ngIf="content.invalid && (content.dirty || content.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="content.errors.required">Hãy nhập nội dung</p>
+                            <p *ngIf="content.errors.minlength">Số lượng lý tự lớn hơn 10 ký tự</p>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!form.valid" class="btn btn-warning" (click)="updateNews()">Sửa sản phẩm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

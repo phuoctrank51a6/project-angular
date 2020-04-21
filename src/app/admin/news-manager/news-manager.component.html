@@ -1,0 +1,56 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Banner</h1>
+</div>
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách Banner
+                <a class="btn btn-primary" [routerLink]="['/admin/add-news']" routerLinkActive="router-link-active">Thêm</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div *ngIf="news" class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Tiêu đề</th>
+                            <th>image</th>
+                            <th>Nội dung</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>Tiêu đề</th>
+                            <th>image</th>
+                            <th>Nội dung</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr *ngFor="let new of news | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                            <td> {{ new.id }} </td>
+                            <p>
+                                <button type="button" class="btn" (mouseover)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                    {{ new.title }}
+                                </button>
+                            </p>
+                            <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                                <a class="btn btn-info" [routerLink]="['../../news-detail', new.id]"><i class="fas fa-eye"></i></a> &nbsp;
+                                <a class="btn btn-warning" [routerLink]="['/admin/edit-news', new.id]"><i class="fas fa-edit"></i></a> &nbsp;
+                                <button class="btn btn-danger" (click)="delNews(new.id)"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                            <td><img width="100px" src="{{new.img}}" alt=""></td>
+                            <td> {{ new.content }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="news.length"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -6,6 +6,9 @@ import { ListProductComponent } from './list-product/list-product.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { ServiceComponent } from './service/service.component';
 
 
 const routes: Routes = [
@@ -14,6 +17,9 @@ const routes: Routes = [
       children: [
         { path: '', component: ListProductComponent},
         { path: 'product-detail/:id', component: ProductDetailComponent},
+        { path: 'contact', component: ContactComponent },
+        { path: 'about', component: AboutComponent },
+        { path: 'service', component: ServiceComponent },
       ]
   },
 //   { path: 'product-manager', component: ProductManagerComponent},

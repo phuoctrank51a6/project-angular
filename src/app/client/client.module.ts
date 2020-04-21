@@ -12,6 +12,10 @@ import { ListProductComponent } from './list-product/list-product.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LayoutComponent } from './layout/layout.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+// import { SliderComponent } from './slider/slider.component';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { ServiceComponent } from './service/service.component';
 
 
 @NgModule({
@@ -24,6 +28,10 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     LayoutComponent,
     NotFoundComponent,
     ProductDetailComponent,
+    // SliderComponent,
+    ContactComponent,
+    AboutComponent,
+    ServiceComponent,
   ],
 })
 export class ClientModule { }

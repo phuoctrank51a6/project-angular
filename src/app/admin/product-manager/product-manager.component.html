@@ -1,16 +1,18 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <h1 class="h3 mb-0 text-gray-800">Sản Phẩm</h1>
 </div>
 <div class="container-fluid">
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm
+                <a class="btn btn-primary" [routerLink]="['/admin/add-product']" routerLinkActive="router-link-active">Thêm</a>
+            </h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div *ngIf="products?.length" class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -20,9 +22,6 @@
                             <th>Desc</th>
                             <th>image</th>
                             <th>status</th>
-                            <th>
-                                <a class="btn btn-primary" href="/admin/add-product">Thêm</a>
-                            </th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -33,24 +32,27 @@
                             <th>Desc</th>
                             <th>image</th>
                             <th>status</th>
-                            <th>
-                                <a class="btn btn-primary" href="/admin/add-product">Thêm</a>
-                            </th>
                         </tr>
                     </tfoot>
                     <tbody>
                         <tr *ngFor="let product of products | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                             <td> {{ product.id }} </td>
-                            <td> {{ product.name }} </td>
+                            <td>
+                                <p>
+                                    <button type="button" class="btn" (mouseover)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                        {{ product.name }}
+                                    </button>
+                                </p>
+                                <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                                    <a class="btn btn-info" [routerLink]="['../../product-detail', product.id]"><i class="fas fa-eye"></i></a> &nbsp;
+                                    <a class="btn btn-warning" [routerLink]="['/admin/edit-product', product.id]"><i class="fas fa-edit"></i></a> &nbsp;
+                                    <button class="btn btn-danger" (click)="delProduct(product.id)"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </td>
                             <td> {{ product.price }} </td>
                             <td> {{ product.desc }} </td>
                             <td><img width="100px" src="{{product.img}}" alt=""></td>
                             <td>{{(product.status == true)? "Còn hàng" : "Hết hàng"}}</td>
-                            <td>
-                                <a class="btn btn-info" [routerLink]="['../../product-detail', product.id]"><i class="fas fa-eye"></i></a> &nbsp;
-                                <a class="btn btn-warning" [routerLink]="['/admin/edit-product', product.id]"><i class="fas fa-edit"></i></a> &nbsp;
-                                <button class="btn btn-danger" (click)="delProduct(product.id)"><i class="fas fa-trash-alt"></i></button>
-                            </td>
                         </tr>
                     </tbody>
                 </table>

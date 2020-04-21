@@ -1,0 +1,37 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Banner</h1>
+</div>
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Thêm Banner</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form [formGroup]='form'>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Name</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" name="name" [(ngModel)]="banner.name" id="exampleFormControlInput1" placeholder="Tên banner">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="name.errors.required">Hãy nhập tên banner</p>
+                            <p *ngIf="name.errors.minlength">Số lượng lý tự lớn hơn 4 ký tự</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Ảnh</label>
+                        <input type="text" class="form-control" id="img" name="img" formControlName="img" [(ngModel)]="banner.img" id="exampleFormControlInput1" placeholder="Link Ảnh">
+                        <div *ngIf="img.invalid && (img.dirty || img.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="img.errors.required">Hãy nhập đường dẫn</p>
+                            <p *ngIf="img.errors.pattern">Chưa đúng chuẩn đường dẫn</p>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!form.valid" class="btn btn-primary" (click)="addBanner()">Thêm sản phẩm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

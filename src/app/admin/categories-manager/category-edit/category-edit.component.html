@@ -1,0 +1,29 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Danh mục</h1>
+</div>
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Cập nhật danh mục</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form *ngIf="category" [formGroup]='form'>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Name</label>
+                        <input type="text" class="form-control" formControlName="name" name="name" [(ngModel)]="category.name" id="exampleFormControlInput1">
+                        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger mt-3">
+                            <p *ngIf="name.errors.required">Hãy nhập tên danh mục</p>
+                            <p *ngIf="name.errors.minlength">Số lượng lý tự lớn hơn 4 ký tự</p>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!form.valid" class="btn btn-warning" (click)="updateCategory()">Cập nhật sản phẩm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

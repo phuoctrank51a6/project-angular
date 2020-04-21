@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../Product';
+import { Product } from '../../models/Product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../../product.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-manager',
@@ -13,6 +13,7 @@ export class ProductManagerComponent implements OnInit {
   products : Product[];
   page = 1;
   pageSize = 10;
+  public isCollapsed = true;
 
 
   constructor(
@@ -25,14 +26,12 @@ export class ProductManagerComponent implements OnInit {
     this.getProduct();  
   }
   getProduct(){
-    // return this.products = this.productsService.getProducts();
-    // console.log(this.products);
-    this.productService.getProducts().subscribe(data => { this.products = data })
+    this.productService.getProducts().subscribe(data => { this.products  = data })
   }
   delProduct(id){
     // console.log(this.product);
     this.products = this.products.filter(product => product.id != id)
-    this.productService.removeProduct(id).subscribe(() => this.router.navigateByUrl('/admin/list-product'));
+    this.productService.removeProduct(id).subscribe(() => this.router.navigateByUrl('/admin/product-manager'));
     // navigateByUrl('/product-manager'));
     // this.route.params.subscribe(data => {
     //   let {id} = data;

@@ -1,0 +1,50 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Sản Phẩm</h1>
+</div>
+<div class="container-fluid">
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm <a class="btn btn-primary" [routerLink]="['/admin/add-category']" routerLinkActive="router-link-active" href="/admin/add-category">Thêm</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div *ngIf="categories" class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr *ngFor="let category of categories | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                            <td> {{ category.id }} </td>
+                            <td>
+                                <p>
+                                    <button type="button" class="btn" (mouseover)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+                                        {{ category.name }}
+                                    </button>
+                                </p>
+                                <div id="collapseExample" [ngbCollapse]="isCollapsed">
+                                    <a class="btn btn-warning" [routerLink]="['/admin/edit-category', category.id]"><i class="fas fa-edit"></i></a> &nbsp;
+                                    <button class="btn btn-danger" (click)="delCategory(category.id)"><i class="fas fa-trash-alt"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="categories.length"></ngb-pagination>
+            </div>
+        </div>
+    </div>
+
+</div>
